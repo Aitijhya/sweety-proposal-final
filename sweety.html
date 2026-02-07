@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Sweety 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Floating hearts */
+    .heart-bg {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      position: relative;
+      background: #fff;
+      width: 90%;
+      max-width: 360px;
+      padding: 30px 20px;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      animation: pop 0.4s ease;
+      z-index: 2;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h2 {
+      color: #ff4d6d;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #444;
+      margin-bottom: 22px;
+    }
+
+    button {
+      background: #ff4d6d;
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .main-heart {
+      font-size: 34px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts container -->
+  <div id="hearts"></div>
+
+  <!-- Proposal card -->
+  <div class="card" id="card">
+    <div class="main-heart">💗</div>
+    <h2>Hey Sweety 🌸</h2>
+    <p>I made something cute just for you…</p>
+    <button onclick="next()">Tap Me 💕</button>
+  </div>
+
+  <script>
+    // Floating hearts generator
+    const heartsContainer = document.getElementById("hearts");
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart-bg";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }, 500);
+
+    // Proposal steps
+    const steps = [
+      { title: "Sweety 💕", text: "Do you know how special you are to me?" },
+      { title: "Everyday 🌈", text: "You make my normal days magical ✨" },
+      { title: "That Smile 😊", text: "Your smile is my favorite thing ever" },
+      { title: "My Heart ❤️", text: "Somewhere between hello and now… I fell for you" },
+      { title: "Truth 🙈", text: "Life feels better with you in it" },
+      { title: "One Question 💍", text: "Will you be mine, Sweety?" },
+      { title: "I Love You 💖", text: "Today. Tomorrow. Always." }
+    ];
+
+    let index = 0;
+
+    function next() {
+      const card = document.getElementById("card");
+
+      if (index < steps.length) {
+        card.innerHTML = `
+          <div class="main-heart">💘</div>
+          <h2>${steps[index].title}</h2>
+          <p>${steps[index].text}</p>
+          <button onclick="next()">Next 💕</button>
+        `;
+        index++;
+      } else {
+        card.innerHTML = `
+          <div class="main-heart">💞</div>
+          <h2>You Said YES 😍</h2>
+          <p>Best feeling ever, Sweety 💗</p>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
